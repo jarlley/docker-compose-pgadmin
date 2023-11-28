@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  pgadmin:
+    image: $PGADMIN_IMAGE
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: $PGADMIN_DEFAULT_EMAIL
+      PGADMIN_DEFAULT_PASSWORD: $PGADMIN_DEFAULT_PASSWORD
+    volumes:
+      - $PGADMIN_WORKDIR/data:/var/lib/pgadmin
+    networks:
+      - postgres_network
+
+networks:
+  postgres_network:
+    name: postgres_network
